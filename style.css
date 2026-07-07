@@ -5,16 +5,16 @@
 
 /* Variables & Custom Properties */
 :root {
-    --bg-dark-deep: #060913;
-    --bg-dark-purple: #0f0d22;
-    --bg-card: rgba(15, 17, 34, 0.45);
-    --gold: #dfb746;
-    --gold-glow: rgba(223, 183, 70, 0.4);
-    --gold-bright: #ffe596;
-    --white: #ffffff;
-    --white-dim: #cbd5e1;
-    --white-faint: rgba(255, 255, 255, 0.08);
-    --purple-glow: rgba(147, 51, 234, 0.25);
+    --bg-dark-deep: #fff0f5; /* Lavender Blush / Soft light pink */
+    --bg-dark-purple: #fce7f3; /* Soft pinkish purple gradient stop */
+    --bg-card: rgba(255, 255, 255, 0.75); /* White glassmorphism card */
+    --gold: #db2777; /* Deep pink/rose accent */
+    --gold-glow: rgba(219, 39, 119, 0.25);
+    --gold-bright: #ec4899; /* Bright pink */
+    --white: #2e1065; /* Dark violet/purple text for high readability */
+    --white-dim: #5b21b6; /* Dim violet text */
+    --white-faint: rgba(219, 39, 119, 0.05);
+    --purple-glow: rgba(244, 114, 182, 0.15);
     
     --font-sans: 'Cairo', sans-serif;
     --font-serif: 'Amiri', serif;
@@ -74,9 +74,9 @@ canvas#starfield {
     top: 20px;
     left: 20px;
     z-index: 100;
-    background: rgba(15, 17, 34, 0.6);
-    border: 1px solid rgba(223, 183, 70, 0.3);
-    color: var(--gold-bright);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(219, 39, 119, 0.3);
+    color: var(--gold);
     padding: 10px 18px;
     border-radius: 50px;
     cursor: pointer;
@@ -248,13 +248,13 @@ canvas#starfield {
 }
 
 .btn-gold {
-    background: linear-gradient(135deg, #d8ac32 0%, #ffe699 100%);
-    color: #121021;
+    background: linear-gradient(135deg, #db2777 0%, #fbcfe8 100%);
+    color: #ffffff;
 }
 
 .btn-gold:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(223, 183, 70, 0.4),
+    box-shadow: 0 10px 25px rgba(219, 39, 119, 0.4),
                 0 0 15px var(--gold-glow);
 }
 
@@ -263,8 +263,9 @@ canvas#starfield {
 }
 
 .btn-white {
-    background: rgba(255, 255, 255, 0.95);
-    color: #0b0e1a;
+    background: #ffffff;
+    color: #db2777;
+    border: 1px solid #db2777;
 }
 
 .btn-white:hover {
@@ -317,9 +318,9 @@ canvas#starfield {
 
 .fancy-input {
     width: 100%;
-    background: rgba(15, 17, 34, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(223, 183, 70, 0.4);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(219, 39, 119, 0.15);
+    border-bottom: 2px solid rgba(219, 39, 119, 0.4);
     padding: 16px 20px;
     border-radius: 12px;
     color: var(--white);
@@ -331,8 +332,8 @@ canvas#starfield {
 }
 
 .fancy-input:focus {
-    background: rgba(15, 17, 34, 0.85);
-    border-color: rgba(223, 183, 70, 0.8);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(219, 39, 119, 0.8);
     border-bottom-color: var(--gold);
     box-shadow: 0 10px 30px rgba(147, 51, 234, 0.1),
                 0 0 10px rgba(223, 183, 70, 0.2);
@@ -340,8 +341,8 @@ canvas#starfield {
 
 .fancy-textarea {
     width: 100%;
-    background: rgba(15, 17, 34, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(219, 39, 119, 0.15);
     border-right: 3px solid var(--gold);
     padding: 18px;
     border-radius: 12px;
@@ -355,8 +356,8 @@ canvas#starfield {
 }
 
 .fancy-textarea:focus {
-    background: rgba(15, 17, 34, 0.85);
-    border-color: rgba(223, 183, 70, 0.5);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(219, 39, 119, 0.5);
     border-right-color: var(--gold-bright);
     box-shadow: 0 10px 30px rgba(147, 51, 234, 0.15);
 }
@@ -518,8 +519,8 @@ canvas#starfield {
     position: relative;
     width: 140px;
     height: 90px;
-    background: #1b1633;
-    border: 1px solid rgba(223, 183, 70, 0.15);
+    background: #f472b6;
+    border: 1px solid rgba(236, 72, 153, 0.3);
     border-radius: 0 0 8px 8px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
@@ -532,7 +533,7 @@ canvas#starfield {
     height: 0;
     border-left: 70px solid transparent;
     border-right: 70px solid transparent;
-    border-top: 45px solid #2e2652;
+    border-top: 45px solid #db2777;
     border-radius: 4px;
     transform-origin: top;
     transition: transform 0.4s ease;
@@ -565,9 +566,9 @@ canvas#starfield {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 70px solid #231c42;
-    border-right: 70px solid #231c42;
-    border-bottom: 45px solid #1f193a;
+    border-left: 70px solid #ec4899;
+    border-right: 70px solid #ec4899;
+    border-bottom: 45px solid #be185d;
     border-top: 45px solid transparent;
     border-radius: 0 0 8px 8px;
     z-index: 4;
@@ -607,8 +608,8 @@ canvas#starfield {
 }
 
 .date-select {
-    background: rgba(15, 17, 34, 0.7);
-    border: 1px solid rgba(223, 183, 70, 0.3);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(219, 39, 119, 0.3);
     color: var(--white);
     padding: 12px;
     border-radius: 10px;
@@ -790,7 +791,7 @@ canvas#starfield {
 
 /* Cinematic Sending Stage */
 #screen-sending-cinema {
-    background: radial-gradient(circle at center, #0f0b2a 0%, var(--bg-dark-deep) 100%);
+    background: linear-gradient(135deg, #fce7f3 0%, #fdf2f8 60%, #f5f3ff 100%);
     overflow: hidden;
 }
 
@@ -906,7 +907,7 @@ canvas#starfield {
     border-radius: 50%;
     background: var(--gold-bright);
     box-shadow: 0 0 40px 10px var(--gold),
-                0 0 100px 30px var(--purple-glow);
+                0 0 100px 30px rgba(249, 168, 212, 0.5);
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
@@ -1008,10 +1009,10 @@ canvas#starfield {
 .vintage-envelope {
     width: 180px;
     height: 120px;
-    background: #c2b280; /* Parchment/antique sand color */
-    border: 1px solid #a39360;
+    background: #f472b6;
+    border: 1px solid #db2777;
     border-radius: 6px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
     position: relative;
     transform: rotate(-3deg);
     cursor: pointer;
@@ -1020,7 +1021,7 @@ canvas#starfield {
 
 .vintage-envelope:hover {
     transform: scale(1.05) rotate(0deg) translateY(-5px);
-    box-shadow: 0 20px 50px rgba(223, 183, 70, 0.3);
+    box-shadow: 0 20px 50px rgba(236, 72, 153, 0.35);
 }
 
 .vintage-flap {
@@ -1031,7 +1032,7 @@ canvas#starfield {
     height: 0;
     border-left: 90px solid transparent;
     border-right: 90px solid transparent;
-    border-top: 60px solid #ab9d70;
+    border-top: 60px solid #ec4899;
     border-radius: 4px;
     transform-origin: top;
     transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -1239,14 +1240,14 @@ canvas#starfield {
     transform: translateX(-50%);
     width: 90%;
     max-width: 700px;
-    background: rgba(15, 17, 34, 0.95);
-    border: 1px solid var(--gold-glow);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(219, 39, 119, 0.25);
     border-bottom: none;
     border-radius: 16px 16px 0 0;
     z-index: 999;
     font-family: var(--font-sans);
     transition: bottom 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+    box-shadow: 0 -10px 40px rgba(219, 39, 119, 0.15);
 }
 
 .time-simulator.expanded {
@@ -1254,7 +1255,7 @@ canvas#starfield {
 }
 
 .simulator-handle {
-    background: #110d2b;
+    background: #fce7f3;
     padding: 12px 20px;
     border-radius: 15px 15px 0 0;
     cursor: pointer;
@@ -1310,7 +1311,7 @@ canvas#starfield {
 }
 
 .sim-date-picker {
-    background: #060913;
+    background: #ffffff;
     border: 1px solid var(--gold-glow);
     color: var(--white);
     padding: 5px 8px;
@@ -1431,9 +1432,27 @@ canvas#starfield {
     display: none !important;
 }
 
+/* Pink star icon header group */
+.planet-icon-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 5px;
+}
+
+.pink-star {
+    color: var(--gold);
+    filter: drop-shadow(0 0 6px var(--gold-glow));
+}
+
+.pink-star.s-lrg { font-size: 2.4rem; }
+.pink-star.s-med { font-size: 1.6rem; opacity: 0.85; }
+.pink-star.s-sm  { font-size: 1rem; opacity: 0.7; color: var(--gold-bright); }
+
 /* Custom CSS Print Styles for Letter export */
 @media print {
-    body * {
+    body {
         visibility: hidden;
     }
     #full-letter-doc, #full-letter-doc * {

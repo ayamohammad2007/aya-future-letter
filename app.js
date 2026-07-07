@@ -71,12 +71,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let stars = [];
     let comets = [];
-    const maxStars = 150;
+    let planets = [];
+    const maxStars = 280;
+
+    // Pink/rose/lavender color palette for stars
+    const starColors = [
+        'rgba(255, 182, 213,',  // pink blush
+        'rgba(236, 72, 153,',   // hot pink
+        'rgba(251, 207, 232,',  // light pink
+        'rgba(196, 181, 253,',  // lavender
+        'rgba(255, 255, 255,',  // white
+        'rgba(253, 164, 175,',  // rose
+        'rgba(249, 168, 212,',  // medium pink
+    ];
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         initStars();
+        initPlanets();
     }
 
     function initStars() {
@@ -85,22 +98,110 @@ document.addEventListener('DOMContentLoaded', () => {
             stars.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                size: Math.random() * 1.5,
-                twinkleSpeed: 0.005 + Math.random() * 0.015,
+                size: Math.random() * 2.2,
+                twinkleSpeed: 0.004 + Math.random() * 0.018,
                 alpha: Math.random(),
-                dir: Math.random() > 0.5 ? 1 : -1
+                dir: Math.random() > 0.5 ? 1 : -1,
+                color: starColors[Math.floor(Math.random() * starColors.length)]
             });
         }
     }
 
+    function initPlanets() {
+        planets = [
+            {
+                x: canvas.width * 0.12, y: canvas.height * 0.15,
+                r: 38, color1: '#f9a8d4', color2: '#fce7f3',
+                glow: 'rgba(249, 168, 212, 0.35)',
+                ring: true, ringColor: 'rgba(236, 72, 153, 0.18)',
+                pulseSpeed: 0.008, pulseDir: 1, pulse: 0
+            },
+            {
+                x: canvas.width * 0.88, y: canvas.height * 0.22,
+                r: 22, color1: '#c084fc', color2: '#e9d5ff',
+                glow: 'rgba(192, 132, 252, 0.3)',
+                ring: false, pulseSpeed: 0.012, pulseDir: 1, pulse: 0
+            },
+            {
+                x: canvas.width * 0.78, y: canvas.height * 0.78,
+                r: 16, color1: '#f472b6', color2: '#fce7f3',
+                glow: 'rgba(244, 114, 182, 0.28)',
+                ring: false, pulseSpeed: 0.01, pulseDir: -1, pulse: 0.5
+            },
+            {
+                x: canvas.width * 0.05, y: canvas.height * 0.75,
+                r: 10, color1: '#a78bfa', color2: '#ede9fe',
+                glow: 'rgba(167, 139, 250, 0.25)',
+                ring: false, pulseSpeed: 0.015, pulseDir: 1, pulse: 0.2
+            },
+            {
+                x: canvas.width * 0.5, y: canvas.height * 0.08,
+                r: 14, color1: '#fb7185', color2: '#fecdd3',
+                glow: 'rgba(251, 113, 133, 0.28)',
+                ring: false, pulseSpeed: 0.009, pulseDir: -1, pulse: 0.8
+            }
+        ];
+    }
+
+    function drawPlanets() {
+        planets.forEach(p => {
+            p.pulse += p.pulseSpeed * p.pulseDir;
+            if (p.pulse > 1) { p.pulse = 1; p.pulseDir = -1; }
+            if (p.pulse < 0) { p.pulse = 0; p.pulseDir = 1; }
+
+            const glowSize = p.r * 2.5 + p.pulse * p.r * 0.5;
+
+            // Outer glow
+            const glowGrad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowSize);
+            glowGrad.addColorStop(0, p.glow.replace(')', ', 0.6)').replace('rgba(', 'rgba(').replace(', 0.6)', `, ${0.25 + p.pulse * 0.2})`));
+            glowGrad.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, glowSize, 0, Math.PI * 2);
+            ctx.fillStyle = glowGrad;
+            ctx.fill();
+
+            // Planet body gradient
+            const bodyGrad = ctx.createRadialGradient(
+                p.x - p.r * 0.3, p.y - p.r * 0.3, p.r * 0.1,
+                p.x, p.y, p.r
+            );
+            bodyGrad.addColorStop(0, p.color2);
+            bodyGrad.addColorStop(0.6, p.color1);
+            bodyGrad.addColorStop(1, p.color1.replace('f', 'd'));
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = bodyGrad;
+            ctx.fill();
+
+            // Ring for Saturn-like planets
+            if (p.ring) {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.scale(1, 0.3);
+                ctx.beginPath();
+                ctx.arc(0, 0, p.r * 1.85, 0, Math.PI * 2);
+                ctx.strokeStyle = p.ringColor;
+                ctx.lineWidth = p.r * 0.45;
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            // Tiny highlight
+            ctx.beginPath();
+            ctx.arc(p.x - p.r * 0.3, p.y - p.r * 0.3, p.r * 0.22, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.55)';
+            ctx.fill();
+        });
+    }
+
     function createComet() {
-        if (Math.random() > 0.993 && comets.length < 2) {
+        if (Math.random() > 0.991 && comets.length < 3) {
             comets.push({
-                x: Math.random() * canvas.width * 0.6,
+                x: Math.random() * canvas.width * 0.7,
                 y: 0,
                 dx: 3 + Math.random() * 4,
                 dy: 2 + Math.random() * 3,
-                length: 40 + Math.random() * 50,
+                length: 45 + Math.random() * 55,
                 alpha: 1,
                 width: 1 + Math.random() * 1.5
             });
@@ -109,53 +210,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function drawStarfield() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Render Ambient Sky Gradients
-        const skyGrad = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 10, canvas.width/2, canvas.height/2, canvas.width);
-        skyGrad.addColorStop(0, '#100b2b');
-        skyGrad.addColorStop(0.5, '#070514');
-        skyGrad.addColorStop(1, '#020308');
+
+        // Soft pink pastel gradient background
+        const skyGrad = ctx.createLinearGradient(0, 0, canvas.width * 0.5, canvas.height);
+        skyGrad.addColorStop(0, '#fff0f5');
+        skyGrad.addColorStop(0.4, '#fce7f3');
+        skyGrad.addColorStop(0.75, '#fdf2f8');
+        skyGrad.addColorStop(1, '#f5f3ff');
         ctx.fillStyle = skyGrad;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Draw and update stars
-        ctx.fillStyle = '#ffffff';
+        // Soft pink nebula blobs for depth
+        const nebula1 = ctx.createRadialGradient(canvas.width * 0.2, canvas.height * 0.3, 20, canvas.width * 0.2, canvas.height * 0.3, canvas.width * 0.35);
+        nebula1.addColorStop(0, 'rgba(249, 168, 212, 0.18)');
+        nebula1.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = nebula1;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const nebula2 = ctx.createRadialGradient(canvas.width * 0.8, canvas.height * 0.6, 10, canvas.width * 0.8, canvas.height * 0.6, canvas.width * 0.3);
+        nebula2.addColorStop(0, 'rgba(196, 181, 253, 0.15)');
+        nebula2.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = nebula2;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw planets behind stars
+        drawPlanets();
+
+        // Draw and update twinkling stars
         stars.forEach(star => {
             star.alpha += star.twinkleSpeed * star.dir;
-            if (star.alpha > 1) {
-                star.alpha = 1;
-                star.dir = -1;
-            } else if (star.alpha < 0.1) {
-                star.alpha = 0.1;
-                star.dir = 1;
-            }
-            ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+            if (star.alpha > 1) { star.alpha = 1; star.dir = -1; }
+            else if (star.alpha < 0.08) { star.alpha = 0.08; star.dir = 1; }
+
+            // Main star dot
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+            ctx.fillStyle = `${star.color}${star.alpha})`;
             ctx.fill();
 
-            // Tiny golden tint on larger stars
-            if (star.size > 1.2) {
-                ctx.fillStyle = `rgba(223, 183, 70, ${star.alpha * 0.6})`;
+            // Cross sparkle on larger stars
+            if (star.size > 1.5) {
+                ctx.save();
+                ctx.globalAlpha = star.alpha * 0.5;
+                ctx.strokeStyle = star.color + '0.7)';
+                ctx.lineWidth = 0.5;
+                const s = star.size * 2.5;
                 ctx.beginPath();
-                ctx.arc(star.x, star.y, star.size + 1, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.moveTo(star.x - s, star.y);
+                ctx.lineTo(star.x + s, star.y);
+                ctx.moveTo(star.x, star.y - s);
+                ctx.lineTo(star.x, star.y + s);
+                ctx.stroke();
+                ctx.restore();
             }
         });
 
         // Trigger shooting stars
         createComet();
 
-        // Draw and update shooting stars (comets)
+        // Draw and update shooting stars (comets) — now pink
         comets.forEach((comet, idx) => {
             comet.x += comet.dx;
             comet.y += comet.dy;
-            comet.alpha -= 0.015;
+            comet.alpha -= 0.013;
 
             if (comet.alpha <= 0 || comet.x > canvas.width || comet.y > canvas.height) {
                 comets.splice(idx, 1);
             } else {
-                ctx.strokeStyle = `rgba(223, 183, 70, ${comet.alpha})`;
+                const grad = ctx.createLinearGradient(
+                    comet.x, comet.y,
+                    comet.x - comet.length * (comet.dx / 5),
+                    comet.y - comet.length * (comet.dy / 5)
+                );
+                grad.addColorStop(0, `rgba(236, 72, 153, ${comet.alpha})`);
+                grad.addColorStop(1, `rgba(249, 168, 212, 0)`);
+                ctx.strokeStyle = grad;
                 ctx.lineWidth = comet.width;
                 ctx.beginPath();
                 ctx.moveTo(comet.x, comet.y);
