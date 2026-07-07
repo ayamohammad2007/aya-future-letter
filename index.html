@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسالة من آية... إلى شخصك المستقبلي</title>
+    <!-- Google Fonts for premium Arabic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for symbols like stars, envelope, clock -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Interactive Starry Sky & Particles -->
+    <canvas id="starfield"></canvas>
+    <div class="ambient-glow"></div>
+
+    <!-- Background Music/Sound Controller -->
+    <button id="sound-toggle" class="sound-btn" aria-label="تشغيل الموسيقى الهادئة">
+        <i class="fas fa-volume-mute"></i>
+        <span>تشغيل الأثير 🎵</span>
+    </button>
+
+    <!-- Main Container -->
+    <main id="app-container">
+        
+        <!-- ==================== SCREEN 1: WELCOME ==================== -->
+        <section id="screen-welcome" class="screen active">
+            <div class="glass-card text-center fade-in">
+                <div class="icon-header">
+                    <i class="fa-solid fa-sparkles gold-text shine-anim"></i>
+                </div>
+                <h1 class="main-title">رسالة من آية...<br><span class="highlight">إلى شخصك المستقبلي</span></h1>
+                
+                <div class="story-text amiri-font">
+                    <p class="fade-line">مرحبًا...</p>
+                    <p class="fade-line">أنا آية.</p>
+                    <p class="fade-line">لا أعرف من أنت، ولا كم عمرك، ولا ما الذي تمر به الآن.</p>
+                    <p class="fade-line">لكنني أؤمن أن لكل إنسان قصة بداخله، وكلمات تستحق أن تُحفظ.</p>
+                    <p class="fade-line">لهذا صنعت لك هذه الرحلة...</p>
+                    <p class="fade-line">هنا ستتحدث مع نفسك بصدق، وستكتب كلمات قد تعود إليها بعد سنوات.</p>
+                    <p class="fade-line font-bold">ربما عندما تقرأها تبتسم...</p>
+                    <p class="fade-line font-bold">وربما تدمع عيناك...</p>
+                    <p class="fade-line">لكن الأكيد أنك ستلتقي بنسخة قديمة منك كانت تحلم، وتحاول، وتبحث عن طريقها.</p>
+                    <p class="fade-line gold-text">خذ هذه اللحظة لنفسك...</p>
+                    <p class="fade-line">واكتب ما لا تستطيع قوله للآخرين.</p>
+                </div>
+
+                <button id="btn-start" class="btn btn-gold ripple-btn">
+                    ابدأ الرحلة <span class="sparkle-stars">✨</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 2: INTRO QUESTIONS ==================== -->
+        <section id="screen-intro-questions" class="screen">
+            <div class="glass-card text-center">
+                <div class="icon-header">
+                    <i class="fa-solid fa-compass gold-text float-anim"></i>
+                </div>
+                <h2 class="section-title">قبل أن نبدأ...</h2>
+                <div class="story-text amiri-font">
+                    <p class="fade-line">سأطرح عليك بعض الأسئلة.</p>
+                    <p class="fade-line">لا توجد إجابات صحيحة أو خاطئة.</p>
+                    <p class="fade-line">ولا أحد سيرى إجاباتك.</p>
+                    <p class="fade-line font-bold gold-text">أجب بصدق...</p>
+                    <p class="fade-line">ليس بما يرضي الآخرين، بل بما يشعر به قلبك.</p>
+                    <p class="fade-line">فكل إجابة ستساعد في كتابة رسالة ستصل إلى شخصك المستقبلي.</p>
+                </div>
+                <button id="btn-ready" class="btn btn-white ripple-btn">
+                    أنا مستعد 🤍
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 3: INTERACTIVE QUESTIONS ==================== -->
+        <section id="screen-questions" class="screen">
+            <div class="glass-card">
+                <!-- Progress Header -->
+                <div class="progress-container">
+                    <button id="btn-question-back" class="btn-back" title="السؤال السابق">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="progress-bar-wrapper">
+                        <div id="question-progress-bar" class="progress-bar"></div>
+                    </div>
+                    <span id="question-number" class="progress-text">1 / 18</span>
+                </div>
+
+                <!-- Question Body -->
+                <div class="question-body text-center">
+                    <h3 id="question-text" class="question-title amiri-font">لو طلبت منك أن تصف شخصك الآن بكلمة واحدة... ماذا ستكون؟</h3>
+                    
+                    <div class="input-container">
+                        <!-- Dynamic Input Field -->
+                        <div id="input-field-wrapper">
+                            <input type="text" id="question-input" class="fancy-input" placeholder="اكتب إجابتك هنا..." autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="question-navigation">
+                        <button id="btn-question-next" class="btn btn-gold ripple-btn">
+                            التالي <i class="fas fa-chevron-left btn-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 4: SILENT REFLECTION ==================== -->
+        <section id="screen-reflection" class="screen">
+            <div class="glass-card text-center transparent-bg">
+                <div class="stars-cluster">
+                    <i class="fas fa-star tiny-star s1"></i>
+                    <i class="fas fa-star tiny-star s2"></i>
+                    <i class="fas fa-star tiny-star s3"></i>
+                </div>
+                <div class="story-text amiri-font large-line-height">
+                    <p class="fade-line reflection-phrase font-italic text-lg">توقّف قليلًا...</p>
+                    <p class="fade-line reflection-phrase text-xl">لقد تحدثت مع نفسك بصدق.</p>
+                    <p class="fade-line reflection-phrase gold-text text-lg">والآن...</p>
+                    <p class="fade-line reflection-phrase text-xl">سنحوّل كلماتك إلى رسالة ستلتقي بها في المستقبل.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 5: WRITE LETTER ==================== -->
+        <section id="screen-write-letter" class="screen">
+            <div class="glass-card">
+                <div class="envelope-preview text-center">
+                    <!-- CSS Envelope Animated -->
+                    <div class="envelope-wrapper">
+                        <div class="envelope">
+                            <div class="flap"></div>
+                            <div class="paper">
+                                <i class="fas fa-feather-alt paper-icon"></i>
+                            </div>
+                            <div class="front"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center intro-letter-text amiri-font">
+                    <p class="gold-text">الآن جاء الوقت...</p>
+                    <p>ليس لتكتب رسالة للآخرين، بل لتكتب رسالة للشخص الذي سيبقى معك طوال حياتك... <strong>شخصك المستقبلي</strong>.</p>
+                    <p class="text-sm">اكتب له كل ما تتمنى أن يتذكره. اكتب أحلامك، مخاوفك، وعودك، والأشياء التي لا تريد أن تنساها.</p>
+                </div>
+
+                <div class="textarea-container">
+                    <label for="main-letter-text" class="input-label">رسالتي إلى شخصي المستقبلي...</label>
+                    <textarea id="main-letter-text" class="fancy-textarea" placeholder="عزيزي المستقبلي، أكتب لك هذا وأنا..." rows="6"></textarea>
+                    
+                    <!-- Faint Help Questions Carousel -->
+                    <div class="help-questions-box">
+                        <span class="help-label"><i class="far fa-lightbulb"></i> أفكار مساعدة:</span>
+                        <div id="help-question-text" class="help-text amiri-font font-italic">ماذا أتمنى أن أكون قد حققت؟</div>
+                    </div>
+                </div>
+
+                <div class="text-center button-container">
+                    <button id="btn-save-letter" class="btn btn-gold ripple-btn">
+                        احفظ رسالتي في الزمن <span class="clock-icon">⏳</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 6: SELECT DATE ==================== -->
+        <section id="screen-select-date" class="screen">
+            <div class="glass-card text-center">
+                <div class="icon-header">
+                    <i class="fa-solid fa-hourglass-half gold-text pulse-anim"></i>
+                </div>
+                
+                <h3 class="section-title">تم حفظ كلماتك...</h3>
+                <p class="subtitle-text amiri-font gold-text">لكن بقي شيء واحد. متى تريد أن تلتقي بهذه الرسالة؟</p>
+                
+                <div class="date-picker-container">
+                    <p class="helper-text amiri-font">اختر اليوم الذي تريد فيه أن تفتح نافذة صغيرة إلى الماضي... اليوم الذي سيعود فيه صوتك القديم ليتحدث معك.</p>
+                    
+                    <!-- Beautiful Custom Select Grid for Date -->
+                    <div class="custom-date-grid">
+                        <div class="select-group">
+                            <label>اليوم</label>
+                            <select id="select-day" class="date-select"></select>
+                        </div>
+                        <div class="select-group">
+                            <label>الشهر</label>
+                            <select id="select-month" class="date-select">
+                                <option value="1">يناير (1)</option>
+                                <option value="2">فبراير (2)</option>
+                                <option value="3">مارس (3)</option>
+                                <option value="4">أبريل (4)</option>
+                                <option value="5">مايو (5)</option>
+                                <option value="6">يونيو (6)</option>
+                                <option value="7">يوليو (7)</option>
+                                <option value="8">أغسطس (8)</option>
+                                <option value="9">سبتمبر (9)</option>
+                                <option value="10">أكتوبر (10)</option>
+                                <option value="11">نوفمبر (11)</option>
+                                <option value="12">ديسمبر (12)</option>
+                            </select>
+                        </div>
+                        <div class="select-group">
+                            <label>السنة</label>
+                            <select id="select-year" class="date-select"></select>
+                        </div>
+                    </div>
+
+                    <!-- Preset Quick Selectors -->
+                    <div class="presets-container">
+                        <button type="button" class="btn-preset" data-years="1">بعد سنة واحدة 📅</button>
+                        <button type="button" class="btn-preset" data-years="3">بعد 3 سنوات ⏳</button>
+                        <button type="button" class="btn-preset" data-years="5">بعد 5 سنوات 🔮</button>
+                    </div>
+                </div>
+
+                <div class="date-display-box">
+                    <span class="label">ستصل رسالتك في:</span>
+                    <span id="display-selected-date" class="selected-date-val gold-text">-- / -- / ----</span>
+                </div>
+
+                <div class="confirm-prompt amiri-font">
+                    <p>هل أنت مستعد لمقابلة شخصك المستقبلي?</p>
+                </div>
+
+                <div class="confirm-buttons">
+                    <button id="btn-confirm-date" class="btn btn-gold ripple-btn">نعم، احفظها 🤍</button>
+                    <button id="btn-edit-letter" class="btn btn-link">أريد تعديلها</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 7: FINAL REFLECTIVE QUESTIONS (8m2xqa) ==================== -->
+        <section id="screen-final-questions" class="screen">
+            <div class="glass-card">
+                <div class="text-center amiri-font letter-transit-intro">
+                    <div class="envelope-mini">
+                        <i class="fa-solid fa-envelope gold-text shine-anim"></i>
+                    </div>
+                    <h3 class="gold-text text-xl">قبل أن أرسل كلماتك عبر الزمن...</h3>
+                    <p class="text-lg">أريد أن أخبرك بشيء.</p>
+                </div>
+
+                <!-- Animated quote fade-in section -->
+                <div class="reflective-monologue amiri-font text-center">
+                    <div class="monologue-part p1">"اليوم أنت لم تكتب مجرد رسالة... أنت حفظت لحظة من حياتك."</div>
+                    <div class="monologue-part p2">"حفظت أفكارك التي تدور في رأسك، وأحلامك التي تخبئها في قلبك، والمشاعر التي ربما لم تستطع أن تقولها لأحد."</div>
+                    <div class="monologue-part p3">"بعد سنوات... قد تنسى كيف كان هذا اليوم، وقد تنسى الأشياء الصغيرة التي كنت تفكر بها... لكن هذه الكلمات ستعيد إليك شخصًا كنت عليه يومًا."</div>
+                    <div class="monologue-part p4">"الشخص الذي كتب هذه الرسالة اليوم... قد يكون خائفًا، قد يكون متعبًا، قد يكون لا يعرف ماذا ينتظره في المستقبل... لكنه اختار أن يؤمن بأن القادم أجمل."</div>
+                </div>
+
+                <div class="final-questions-title-wrapper text-center">
+                    <h4 class="gold-text">قبل أن نرسل رسالتك... أجب عن هذه الأسئلة الأخيرة:</h4>
+                </div>
+
+                <!-- 4 Final Questions Flow -->
+                <div class="final-questions-form">
+                    <div class="final-question-item">
+                        <label class="fq-label">1. ما الشيء الذي تتمنى أن يشكرك عليه شخصك المستقبلي؟</label>
+                        <input type="text" id="fq-1" class="fancy-input" placeholder="اكتب إجابتك هنا...">
+                    </div>
+                    <div class="final-question-item">
+                        <label class="fq-label">2. ما الشيء الذي تتمنى ألا يسمح شخصك المستقبلي لنفسه أن ينساه؟</label>
+                        <input type="text" id="fq-2" class="fancy-input" placeholder="اكتب إجابتك هنا...">
+                    </div>
+                    <div class="final-question-item">
+                        <label class="fq-label">3. إذا فتح شخصك المستقبلي هذه الرسالة في يوم صعب... ما الجملة التي تريد أن يسمعها منك؟</label>
+                        <input type="text" id="fq-3" class="fancy-input" placeholder="اكتب إجابتك هنا...">
+                    </div>
+                    <div class="final-question-item">
+                        <label class="fq-label">4. ما الوعد الصغير الذي ستبدأ بتنفيذه من اليوم؟</label>
+                        <input type="text" id="fq-4" class="fancy-input" placeholder="اكتب إجابتك هنا...">
+                    </div>
+                </div>
+
+                <div class="text-center button-container">
+                    <button id="btn-submit-final" class="btn btn-gold ripple-btn">
+                        استمر إلى إرسال الرسالة ✨
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 8: AYA'S FINAL WORD & SENDING ANIMATION ==================== -->
+        <section id="screen-aya-blessing" class="screen">
+            <div class="glass-card text-center">
+                <div class="aya-avatar shine-anim">
+                    <span>آية ✨</span>
+                </div>
+                
+                <div class="story-text amiri-font text-right aya-message-box">
+                    <p class="fade-line">عزيزي...</p>
+                    <p class="fade-line">أشكرك لأنك توقفت قليلًا وسط سرعة الحياة، وأعطيت نفسك فرصة لتسمعها.</p>
+                    <p class="fade-line">أحيانًا نحتاج أن نتذكر أننا لسنا فقط ما نحققه... بل نحن أيضًا كل المحاولات التي قمنا بها، وكل المرات التي نهضنا فيها بعد التعب.</p>
+                    <p class="fade-line">لا أعرف كيف سيكون يومك عندما تصل إليك هذه الرسالة، لكنني أتمنى أن تقرأها وأنت فخور بنفسك.</p>
+                    <p class="fade-line">وإذا لم تصل بعد إلى كل ما حلمت به... فلا بأس.</p>
+                    <p class="fade-line font-bold gold-text">يكفي أنك ما زلت تحاول، وما زال بداخلك أمل، وما زلت تملك القدرة على أن تبدأ من جديد.</p>
+                </div>
+
+                <div class="letter-seal-area amiri-font text-center">
+                    <p class="fade-line">الآن... سأضع كلماتك في أمانة الزمن. ستغادر رسالتك اليوم... لكنها ستعود إليك في اليوم الذي اخترته.</p>
+                </div>
+
+                <button id="btn-final-send-trigger" class="btn btn-gold btn-large pulse-anim">
+                    أرسل رسالتي عبر الزمن 🚀
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 9: CINEMATIC SENDING SEQUENCE ==================== -->
+        <section id="screen-sending-cinema" class="screen">
+            <div class="cinema-content text-center">
+                <!-- Clock Spinner Layer -->
+                <div class="clock-spinner-wrapper">
+                    <div class="clock-dial">
+                        <div class="hand hour-hand"></div>
+                        <div class="hand minute-hand"></div>
+                    </div>
+                </div>
+                
+                <!-- Envelope Flying -->
+                <div class="flying-envelope-wrapper">
+                    <div class="golden-sealed-envelope" id="traveling-envelope">
+                        <div class="envelope-date-stamp" id="envelope-stamp-text">07 / 07 / 2031</div>
+                        <i class="fa-solid fa-envelope gold-envelope-body"></i>
+                        <div class="glowing-aurora"></div>
+                    </div>
+                </div>
+
+                <!-- Cosmic Portal effect -->
+                <div class="cosmic-portal"></div>
+
+                <div class="cinema-text amiri-font">
+                    <h3 class="gold-text glow-text">رحلة الرسالة بدأت...</h3>
+                    <p class="subtext">في اليوم الذي اخترته، ستعود إليك الكلمات التي كتبتها اليوم.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 10: SUCCESS OUTRO ==================== -->
+        <section id="screen-success" class="screen">
+            <div class="glass-card text-center">
+                <div class="success-icon-header">
+                    <i class="fa-solid fa-circle-check gold-text scale-up-anim"></i>
+                </div>
+                <h2 class="section-title gold-text">تم إرسال الرسالة بنجاح ✨</h2>
+                <div class="story-text amiri-font">
+                    <p class="large-text">سنلتقي في المستقبل...</p>
+                    <p>رسالتك الآن محفوظة في سجلات الزمن وسيتم الكشف عنها في التاريخ الذي حددته.</p>
+                </div>
+
+                <!-- Visual Recap -->
+                <div class="recap-info">
+                    <div class="recap-item">
+                        <span class="label">تاريخ الاستلام المختار:</span>
+                        <strong class="value gold-text" id="recap-target-date">-- / -- / ----</strong>
+                    </div>
+                </div>
+
+                <div class="success-actions">
+                    <button id="btn-restart" class="btn btn-white">
+                        رحلة جديدة 🤍
+                    </button>
+                    <!-- Button to review simulation instantly -->
+                    <button id="btn-open-simulator" class="btn btn-gold">
+                        سافر إلى المستقبل لرؤيتها الآن 🚀
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SCREEN 11: RETRIEVAL / RECEIVED LETTER ==================== -->
+        <section id="screen-received" class="screen">
+            <div class="dark-overlay"></div>
+            <div class="glass-card text-center received-container">
+                <div class="vintage-envelope-area">
+                    <!-- Vintage envelope model -->
+                    <div class="vintage-envelope" id="vintage-envelope-interactive">
+                        <div class="vintage-flap"></div>
+                        <div class="wax-seal"></div>
+                        <div class="vintage-paper">
+                            <span class="paper-watermark">من الماضي</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arrival-text amiri-font" id="arrival-intro-text">
+                    <h3 class="gold-text pulsate">لقد وصلت رسالة من الماضي...</h3>
+                    <p class="author-sub">من شخص كان يؤمن بك.</p>
+                    
+                    <div class="reflection-quote text-sm font-italic">
+                        "قبل سنوات... جلس شخص يشبهك تمامًا، وحمل نفس أحلامك ومخاوفك، وكتب لك هذه الكلمات."
+                    </div>
+                    
+                    <button id="btn-open-envelope" class="btn btn-gold font-bold pulse-anim">
+                        افتح الرسالة الآن ✉️
+                    </button>
+                </div>
+
+                <!-- The full letter content display (Shown after opening) -->
+                <div class="full-letter-document text-right hidden" id="full-letter-doc">
+                    <div class="document-header">
+                        <h4 class="doc-title gold-text amiri-font">رسالة من ذاتك في الماضي</h4>
+                        <span class="doc-date" id="doc-origin-date">كتبت في: -- / -- / ----</span>
+                    </div>
+
+                    <div class="document-content amiri-font">
+                        <!-- Main Letter -->
+                        <div class="doc-section">
+                            <h5 class="gold-text"><i class="fa-solid fa-feather"></i> نص الرسالة الرئيسي:</h5>
+                            <div class="letter-body-content" id="letter-display-body"></div>
+                        </div>
+
+                        <!-- 18 Questions Log -->
+                        <div class="doc-section">
+                            <h5 class="gold-text"><i class="fa-solid fa-clipboard-question"></i> رحلة إجاباتك الذاتية:</h5>
+                            <ul class="q-log-list" id="letter-display-questions">
+                                <!-- Populated dynamically -->
+                            </ul>
+                        </div>
+
+                        <!-- Final 4 Questions Log -->
+                        <div class="doc-section">
+                            <h5 class="gold-text"><i class="fa-solid fa-heart"></i> الوعود والخواطر الختامية:</h5>
+                            <ul class="q-log-list" id="letter-display-final-questions">
+                                <!-- Populated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="document-footer text-center">
+                        <p class="gold-text amiri-font">"انتهت الكلمات... لكن الأمل والرحلة مستمرة."</p>
+                        <div class="footer-actions">
+                            <button id="btn-print-letter" class="btn btn-gold btn-sm"><i class="fas fa-print"></i> طباعة / حفظ كـ PDF</button>
+                            <button id="btn-close-reader" class="btn btn-white btn-sm">إغلاق 🤍</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== SIMULATOR / TIME TRAVEL BAR ==================== -->
+    <div id="time-travel-panel" class="time-simulator">
+        <div class="simulator-handle" id="simulator-toggle-btn">
+            <i class="fa-solid fa-circle-nodes"></i>
+            <span>محاكي السفر عبر الزمن (لأغراض التقييم والتجربة)</span>
+            <i class="fa-solid fa-chevron-up toggle-arrow"></i>
+        </div>
+        <div class="simulator-body">
+            <p class="sim-desc text-xs">نظرًا لأن الرسالة مبرمجة لتظهر في تاريخ مستقبلي، يمكنك استخدام هذا الشريط لتغيير "التاريخ الافتراضي للنظام" وتجربة استلام الرسالة فورًا.</p>
+            <div class="sim-controls">
+                <div class="control-group">
+                    <label>تاريخ النظام الافتراضي الحالي:</label>
+                    <span id="current-system-date" class="gold-text font-bold">2026-07-07</span>
+                </div>
+                <div class="control-group">
+                    <label>تغيير تاريخ النظام إلى:</label>
+                    <input type="date" id="simulated-date-input" class="sim-date-picker">
+                </div>
+                <button id="btn-apply-time-travel" class="btn btn-gold btn-xs">سافر إلى هذا التاريخ 🌀</button>
+                <button id="btn-reset-time-travel" class="btn btn-white btn-xs">العودة للوقت الحالي 🔄</button>
+            </div>
+            <div class="stored-letters-info">
+                <h4>الرسائل المخزنة في النظام:</h4>
+                <ul id="stored-letters-list" class="stored-list">
+                    <li>لا توجد رسائل مخزنة بعد.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script references -->
+    <script src="app.js"></script>
+</body>
+</html>
