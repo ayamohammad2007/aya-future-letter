@@ -131,14 +131,14 @@ canvas#starfield {
 
 /* Glassmorphism Card Style */
 .glass-card {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.05),
-                0 0 40px rgba(147, 51, 234, 0.05);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(236, 72, 153, 0.18);
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 50px rgba(219, 39, 119, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(249, 168, 212, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
     padding: 40px 30px;
     position: relative;
@@ -153,7 +153,7 @@ canvas#starfield {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(223, 183, 70, 0.03) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(249, 168, 212, 0.06) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -182,7 +182,7 @@ canvas#starfield {
 
 .gold-text {
     color: var(--gold);
-    text-shadow: 0 0 10px rgba(223, 183, 70, 0.2);
+    text-shadow: 0 0 10px rgba(219, 39, 119, 0.2);
 }
 
 .glow-text {
@@ -191,7 +191,7 @@ canvas#starfield {
 
 .highlight {
     color: var(--gold-bright);
-    background: linear-gradient(120deg, var(--gold) 0%, var(--gold-bright) 100%);
+    background: linear-gradient(120deg, #db2777 0%, #f472b6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -203,17 +203,19 @@ canvas#starfield {
     margin-bottom: 30px;
     line-height: 1.5;
     letter-spacing: -0.5px;
+    color: #2e1065;
 }
 
 .section-title {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 25px;
+    color: #2e1065;
 }
 
 .story-text {
     font-size: 1.15rem;
-    color: var(--white-dim);
+    color: #7c3aed;
     margin-bottom: 35px;
 }
 
@@ -276,7 +278,7 @@ canvas#starfield {
 
 .btn-link {
     background: transparent;
-    color: var(--white-dim);
+    color: #7c3aed;
     border: none;
     text-decoration: underline;
     font-size: 0.95rem;
@@ -286,7 +288,7 @@ canvas#starfield {
 }
 
 .btn-link:hover {
-    color: var(--gold-bright);
+    color: var(--gold);
 }
 
 .btn-large {
@@ -372,12 +374,12 @@ canvas#starfield {
 }
 
 .btn-back {
-    background: var(--white-faint);
-    border: none;
+    background: rgba(219, 39, 119, 0.08);
+    border: 1px solid rgba(219, 39, 119, 0.2);
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    color: var(--white);
+    color: var(--gold);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -386,7 +388,7 @@ canvas#starfield {
 }
 
 .btn-back:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(219, 39, 119, 0.15);
     color: var(--gold);
 }
 
@@ -411,7 +413,7 @@ canvas#starfield {
 .progress-text {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--white-dim);
+    color: #7c3aed;
     min-width: 50px;
     text-align: left;
 }
@@ -427,7 +429,7 @@ canvas#starfield {
     font-size: 1.5rem;
     margin-bottom: 20px;
     min-height: 80px;
-    color: var(--white);
+    color: #2e1065;
 }
 
 /* Reflection Stage Styles */
